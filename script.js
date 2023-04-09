@@ -4,8 +4,14 @@ const authorText = document.getElementById("author");
 const newQuoteBtn = document.getElementById("new-quote");
 const twitterBtn = document.getElementById("twitter");
 const loadingSpinner = document.getElementById("loading-spinner");
+const modal = document.getElementById("modal");
+const imageText = document.getElementById("image-text");
+const imageAuthor = document.getElementById("image-author");
 let apiQuote = [];
 
+/**
+ * API fetching JS
+ */
 async function getQuoteFromAPI() {
   showingLoadingSpinner(); // calling Loading method before the API fetches data.
   const apiUrl = "https://type.fit/api/quotes";
@@ -25,8 +31,10 @@ function setQuote() {
 
   if (!quote.author) {
     authorText.textContent = "Unkown";
+    imageAuthor.textContent = "Unkown";
   } else {
     authorText.textContent = quote.author;
+    imageAuthor.textContent = quote.author;
   }
 
   if (quote.text.length > 120) {
@@ -37,9 +45,13 @@ function setQuote() {
   }
 
   quoteText.textContent = quote.text;
+  imageText.textContent = quote.text;
   hideLoadingSpinner();
 }
 
+/**
+ * Buttons JS
+ */
 function tweetQuote() {
   const twitterUrl = `https://twitter.com/intent/tweet?text=${quoteText.textContent} - ${authorText.textContent}`;
   window.open(twitterUrl, "_blank");
@@ -53,6 +65,16 @@ function showingLoadingSpinner() {
 function hideLoadingSpinner() {
   mainContainer.style.display = "block";
   loadingSpinner.style.display = "none";
+}
+
+/**
+ * Modal JS
+ */
+function closeModal() {
+  modal.style.display = "none";
+}
+function showModal() {
+  modal.style.display = "flex";
 }
 
 // setting event listeners for both buttons
