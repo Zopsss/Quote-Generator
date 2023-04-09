@@ -28,11 +28,35 @@
         <!-- Buttons -->
         <div class="button-container">
             <button class="btn twitter-button" id="twitter" title="Tweet this!">
-                <i class="fab fa-twitter "></i>
+                <i class="fab fa-twitter"></i>
+            </button>
+            <button class="btn" onclick="showModal()" style="margin-left: 3.6rem;">
+                Download
             </button>
             <button class="btn" id="new-quote">
                 New Quote
             </button>
+        </div>
+    </div>
+
+    <div class="modal" id="modal">
+        <div class="upper-part">
+            <button class="background">Background</button>
+            <button>Fonts</button>
+        </div>
+        <div class="image-container">
+            <div class="image-text">
+                <i class="fas fa-quote-left"></i>
+                <span id="image-text"></span>
+            </div>
+            <div class="image-author">
+                <span id="image-author">Unkown</span>
+            </div>
+            <img src="./images/tile_background.png" alt="">
+        </div>
+        <div class="lower-part">
+            <button onclick="closeModal()">Cancel</button>
+            <button>Save</button>
         </div>
     </div>
     <!-- Loading Spinner -->
