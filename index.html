@@ -8,6 +8,9 @@
     <link rel="icon" type="image/png" href="favicon.png">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.2/css/all.min.css">
     <link rel="stylesheet" href="style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/dom-to-image/2.6.0/dom-to-image.min.js"
+        integrity="sha512-01CJ9/g7e8cUmY0DFTMcUw/ikS799FHiOA0eyHsUWfOetgbx/t6oV4otQ5zXKQyIrQGTHSmRVPIgrgLcZi/WMA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="script.js" defer></script>
 </head>
 
@@ -39,24 +42,57 @@
         </div>
     </div>
 
-    <div class="modal" id="modal">
+    <div id="modal">
         <div class="upper-part">
-            <button class="background">Background</button>
-            <button>Fonts</button>
+            <div class="background-wrapper">
+                <button id="background-btn">Backgrounds</button>
+                <div id="background-list">
+                    <ul class="background-ul">
+                        <li><img class="background-li" src="./images/colorful-stingrays.png" alt=""></li>
+                        <li><img class="background-li" src="./images/double-bubble-outline.png" alt=""></li>
+                        <li><img class="background-li" src="./images/floor-tile.png" alt=""></li>
+                        <li><img class="background-li" src="./images/liquid-cheese.png" alt=""></li>
+                        <li><img class="background-li" src="./images/moroccan-flower.png" alt=""></li>
+                        <li><img class="background-li" src="./images/sun-tornado.png" alt=""></li>
+                        <li><img class="background-li" src="./images/tile_background.png" alt=""></li>
+                        <li><img class="background-li" src="./images/quantum-gradient.png" alt=""></li>
+                        <li><img class="background-li" src="./images/radiant-gradient.png" alt=""></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="fonts-wrapper">
+                <button id="fonts-btn">Fonts</button>
+                <div id="fonts-list">
+                    <ul class="fonts-ul">
+                        <li class="fonts-li">Default</li>
+                        <li class="fonts-li">Poppins</li>
+                        <li class="fonts-li">Monospace</li>
+                        <li class="fonts-li">Arvo</li>
+                        <li class="fonts-li">Oswald</li>
+                        <li class="fonts-li">Times New Roman</li>
+                        <li class="fonts-li">Pacifico</li>
+                        <li class="fonts-li">Righteous</li>
+                        <li class="fonts-li">Cinzel</li>
+                        <li class="fonts-li">Anton</li>
+                        <li class="fonts-li">Shadows Into Light</li>
+                        <li class="fonts-li">Crimson Text</li>
+                    </ul>
+                </div>
+            </div>
         </div>
-        <div class="image-container">
+        <div id="image-container">
             <div class="image-text">
-                <i class="fas fa-quote-left"></i>
-                <span id="image-text"></span>
+                <!-- <i class="fas fa-quote-left"></i> -->
+                <span id="image-text-span"></span>
             </div>
             <div class="image-author">
-                <span id="image-author">Unkown</span>
+                <span id="image-author-span"></span>
             </div>
-            <img src="./images/tile_background.png" alt="">
+            <img src="./images/quantum-gradient.png" alt="" id="image-background">
         </div>
         <div class="lower-part">
             <button onclick="closeModal()">Cancel</button>
-            <button>Save</button>
+            <button id="save-btn">Save</button>
         </div>
     </div>
     <!-- Loading Spinner -->
