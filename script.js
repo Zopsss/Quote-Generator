@@ -1,12 +1,31 @@
+// const { default: html2canvas } = require("html2canvas");
+// import html2canvas from "./node_modules/html2canvas";
+
 const mainContainer = document.getElementById("main-container");
 const quoteText = document.getElementById("quote-text");
 const authorText = document.getElementById("author");
 const newQuoteBtn = document.getElementById("new-quote");
 const twitterBtn = document.getElementById("twitter");
 const loadingSpinner = document.getElementById("loading-spinner");
+
+// Modal Buttons
+const imageContainer = document.getElementById("image-container");
 const modal = document.getElementById("modal");
-const imageText = document.getElementById("image-text");
-const imageAuthor = document.getElementById("image-author");
+const imageText = document.getElementById("image-text-span");
+const imageAuthor = document.getElementById("image-author-span");
+const saveBtn = document.getElementById("save-btn");
+
+// Modal Background Buttons
+const backgroundBtn = document.getElementById("background-btn");
+const backgroundList = document.getElementById("background-list");
+const backgroundLi = document.querySelectorAll(".background-li");
+const imageBackground = document.getElementById("image-background");
+
+// Modal Fonts Buttons
+const fontsBtn = document.getElementById("fonts-btn");
+const fontsList = document.getElementById("fonts-list");
+const fontsLi = document.querySelectorAll(".fonts-li");
+
 let apiQuote = [];
 
 /**
@@ -46,6 +65,7 @@ function setQuote() {
 
   quoteText.textContent = quote.text;
   imageText.textContent = quote.text;
+  modal.style.display = "none";
   hideLoadingSpinner();
 }
 
@@ -72,15 +92,71 @@ function hideLoadingSpinner() {
  */
 function closeModal() {
   modal.style.display = "none";
+  backgroundList.style.display = "none";
+  fontsList.style.display = "none";
 }
 function showModal() {
   modal.style.display = "flex";
 }
 
+function showAndHideBackgroundList() {
+  if (backgroundList.style.display === "none") {
+    backgroundList.style.display = "flex";
+    fontsList.style.display = "none";
+  } else {
+    backgroundList.style.display = "none";
+  }
+}
+
+function showAndHideFontsList() {
+  if (fontsList.style.display === "none") {
+    fontsList.style.display = "flex";
+    backgroundList.style.display = "none";
+  } else {
+    fontsList.style.display = "none";
+  }
+}
+
+backgroundLi.forEach((background) => {
+  background.addEventListener("click", function () {
+    // console.log(background.getAttribute("src"));
+    imageBackground.setAttribute("src", background.getAttribute("src"));
+  });
+});
+
+fontsLi.forEach((font) => {
+  font.addEventListener("click", function () {
+    if (font.textContent === "Default") {
+      imageText.style.fontFamily = "sans-serif";
+      imageAuthor.style.fontFamily = "sans-serif";
+    } else {
+      imageText.style.fontFamily = font.textContent;
+      imageAuthor.style.fontFamily = font.textContent;
+    }
+  });
+});
+
+function downloadImage() {
+  domtoimage
+    .toPng(imageContainer, {
+      width: 450,
+      height: 200,
+    })
+    .then((dataUrl) => {
+      const link = document.createElement("a");
+      link.download = "quote.png";
+      link.href = dataUrl;
+      link.click();
+      closeModal();
+    });
+}
+
 // setting event listeners for both buttons
 newQuoteBtn.addEventListener("click", setQuote);
 twitterBtn.addEventListener("click", tweetQuote);
-
+backgroundBtn.addEventListener("click", showAndHideBackgroundList);
+fontsBtn.addEventListener("click", showAndHideFontsList);
+saveBtn.addEventListener("click", downloadImage);
 /*
  Calling this method on page load.
  Note:- we're loading our JS after whole HTML is loaded & in JS this method is called at last,
