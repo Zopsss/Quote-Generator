@@ -1,6 +1,3 @@
-// const { default: html2canvas } = require("html2canvas");
-// import html2canvas from "./node_modules/html2canvas";
-
 const mainContainer = document.getElementById("main-container");
 const quoteText = document.getElementById("quote-text");
 const authorText = document.getElementById("author");
